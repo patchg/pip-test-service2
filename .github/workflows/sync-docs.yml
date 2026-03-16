@@ -1,0 +1,16 @@
+name: Sync Context Files to Mono
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+
+jobs:
+  sync:
+    uses: patchg/.github/.github/workflows/shared-sync-docs.yml@main
+    with:
+      source_paths: 'docs/**'
+      destination_path: 'services/${{ github.event.repository.name }}/'
+    secrets:
+      DOC_MIRROR_TOKEN: ${{ secrets.DOC_MIRROR_TOKEN }}

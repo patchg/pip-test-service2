@@ -1,0 +1,9 @@
+source_paths:
+  - "docs/**"
+destination_path: "services/{repo_name}/"
+triggers:
+  branches: [main]
+  paths: ["docs/**"]
+metadata:
+  team: "your-team"
+  system: "pip"

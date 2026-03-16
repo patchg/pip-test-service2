@@ -1,0 +1,30 @@
+service:
+  name: my-service
+  version: 1.0.0
+  repository: patchg/my-service
+
+runtime:
+  internal:
+    - name: auth-service
+      type: http
+      endpoint: https://auth.internal/api/v1
+      criticality: high
+      fallback: none
+  databases:
+    - name: primary-postgres
+      type: postgresql
+      version: "15.x"
+      criticality: high
+
+infrastructure:
+  platform: aws
+  services:
+    - name: lambda
+      purpose: compute
+    - name: s3
+      purpose: storage
+
+update_policy:
+  security_patches: immediate
+  minor_updates: weekly
+  major_updates: quarterly-review
